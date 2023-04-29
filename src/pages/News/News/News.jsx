@@ -1,11 +1,28 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-const { id } = useParams()
+import { Button, Card } from 'react-bootstrap';
+import { FaArrowLeft } from 'react-icons/fa';
+import { Link, useLoaderData, useParams } from 'react-router-dom';
+import EditorsInsight from '../EditorsInsight/EditorsInsight';
+// const { id } = useParams()
 
 const News = () => {
+    const news = useLoaderData();
+    const { _id, title, details, image_url, category_id } = news;
     return (
         <div>
-            <h2>News is coming: {id}</h2>
+            <Card>
+                <Card.Img variant="top" src={image_url} />
+                <Card.Body>
+                    <Card.Title>{title}</Card.Title>
+                    <Card.Text>
+                        {details}
+                    </Card.Text>
+                    <Link to={`/category/${category_id}`}>
+                        <Button variant="danger"><FaArrowLeft></FaArrowLeft> All news in this category</Button>
+                    </Link>
+                </Card.Body>
+            </Card>
+            <EditorsInsight></EditorsInsight>
         </div>
     );
 };

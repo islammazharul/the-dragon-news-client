@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import HomeEditor from '../HomeEditor/HomeEditor';
 
 const LeftNav = () => {
 
@@ -23,6 +24,7 @@ const LeftNav = () => {
                     </p>)
                 }
             </div>
+            <HomeEditor></HomeEditor>
         </div>
     );
 };
