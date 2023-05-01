@@ -8,19 +8,18 @@ import React, { useContext } from 'react';
 
 const NavigationBar = () => {
 
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch(error => {
+                console.log(error)
+            })
+    }
 
     return (
         <Container>
-            <div className='d-flex'>
-
-                <Button variant="danger">Latest</Button>{' '}
-                <Marquee className='text-danger' speed={100} pauseOnHover={true}>
-                    I can be a React component, multiple React components, or just some text.......I can be a React component, multiple React components, or just some text.......
-                </Marquee>
-
-            </div>
-
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
@@ -33,7 +32,7 @@ const NavigationBar = () => {
                         {user && <FaUserCircle style={{ fontSize: "40px" }}></FaUserCircle>}
 
                         {user ?
-                            <Button variant="outline-secondary">Log Out</Button> :
+                            <Button onClick={handleLogOut} variant="outline-secondary">Log Out</Button> :
                             <Link to="/login">
                                 <Button variant="outline-secondary">Login</Button>
                             </Link>
